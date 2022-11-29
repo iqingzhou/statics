@@ -1,0 +1,1066 @@
+@charset "utf-8";
+
+/* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
+html {
+  color: #333;
+  background: #fff;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-rendering: optimizelegibility;
+/*  text-shadow: 0 0 1.15px #a4a09ad9, 0 0 1px #7b7b7bff, 0 0 0.75px #302f2d57;*/
+}
+html,body{
+  scroll-behavior: smooth;
+}
+
+/* 如果你的项目仅支持 IE9+ | Chrome | Firefox 等，推荐在 <html> 中添加 .borderbox 这个 class */
+html.borderbox *, html.borderbox *:before, html.borderbox *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* 内外边距通常让各个浏览器样式的表现位置不同 */
+body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+  margin: 0;
+  padding: 0;
+}
+
+/* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+  display: block;
+}
+
+/* HTML5 媒体文件跟 img 保持一致 */
+audio, canvas, video {
+  display: inline-block;
+}
+
+/* 要注意表单元素并不继承父级 font 的问题 */
+body, button, input, select, textarea {
+  font: 300 1em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+/* 去掉各Table cell 的边距并让其边重合 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 去除默认边框 */
+fieldset, img {
+  border: 0;
+}
+
+/* 块/段落引用 */
+blockquote {
+  position: relative;
+  color: #999;
+  font-weight: 400;
+  border-left: 1px solid #1abc9c;
+  padding-left: 1em;
+  margin: 1em 3em 1em 2em;
+}
+
+@media only screen and ( max-width: 640px ) {
+  blockquote {
+    margin: 1em 0;
+  }
+}
+
+/* Firefox 以外，元素没有下划线，需添加 */
+acronym, abbr {
+  border-bottom: 1px dotted;
+  font-variant: normal;
+}
+
+/* 添加鼠标问号，进一步确保应用的语义是正确的（要知道，交互他们也有洁癖，如果你不去掉，那得多花点口舌） */
+abbr {
+  cursor: help;
+}
+
+/* 一致的 del 样式 */
+del {
+  text-decoration: line-through;
+}
+
+address, caption, cite, code, dfn, em, th, var {
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* 去掉列表前的标识, li 会继承，大部分网站通常用列表来很多内容，所以应该当去 */
+ul, ol {
+  list-style: none;
+}
+
+/* 对齐是排版最重要的因素, 别让什么都居中 */
+caption, th {
+  text-align: left;
+}
+
+q:before, q:after {
+  content: '';
+}
+
+/* 统一上标和下标 */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+}
+
+:root sub, :root sup {
+  vertical-align: baseline; /* for ie9 and other modern browsers */
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* 让链接在 hover 状态下显示下划线 */
+a {
+  color: #1abc9c;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/*.typo a {
+  border-bottom: 1px solid #1abc9c;
+}*/
+
+.typo a:hover {
+  border-bottom-color: #555;
+  color: #555;
+  text-decoration: none;
+}
+
+/* 默认不显示下划线，保持页面简洁 */
+ins, a {
+  text-decoration: none;
+}
+
+/* 专名号：虽然 u 已经重回 html5 Draft，但在所有浏览器中都是可以使用的，
+ * 要做到更好，向后兼容的话，添加 class="typo-u" 来显示专名号
+ * 关于 <u> 标签：http://www.whatwg.org/specs/web-apps/current-work/multipage/text-level-semantics.html#the-u-element
+ * 被放弃的是 4，之前一直搞错 http://www.w3.org/TR/html401/appendix/changes.html#idx-deprecated
+ * 一篇关于 <u> 标签的很好文章：http://html5doctor.com/u-element/
+ */
+u, .typo-u {
+  text-decoration: underline;
+}
+
+/* 标记，类似于手写的荧光笔的作用 */
+mark {
+  background: #fffdd1;
+  border-bottom: 1px solid #ffedce;
+  padding: 2px;
+  margin: 0 5px;
+}
+
+/* 代码片断 */
+pre, code, pre tt {
+  font-family: Courier, 'Courier New', monospace;
+}
+
+pre {
+  background: #f8f8f8;
+  padding: 1em 1.5em;
+  display: block;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 一致化 horizontal rule */
+hr {
+  border: none;
+  border-bottom: 1px solid #1abc9c;
+  margin-bottom: 0.8em;
+  height: 10px;
+}
+
+/* 底部印刷体、版本等标记 */
+small, .typo-small,
+  /* 图片说明 */
+figcaption {
+  font-size: 0.9em;
+  color: #888;
+}
+
+strong, b {
+  font-weight: bold;
+  color: #000;
+}
+
+/* 可拖动文件添加拖动手势 */
+[draggable] {
+  cursor: move;
+}
+
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+/* 强制文本换行 */
+.textwrap, .textwrap td, .textwrap th {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.textwrap-table {
+  table-layout: fixed;
+}
+
+/* 提供 serif 版本的字体设置: iOS 下中文自动 fallback 到 sans-serif */
+/* .serif {
+  font-family: Palatino, Optima, Georgia, serif;
+}*/
+
+/* 保证块/段落之间的空白隔行 */
+.typo p, .typo pre, .typo ul, .typo ol, .typo dl, .typo form, .typo hr, .typo table,
+.typo-p, .typo-pre, .typo-ul, .typo-ol, .typo-dl, .typo-form, .typo-hr, .typo-table, blockquote {
+  margin-bottom: 1.2em;
+ word-break: break-all;
+ word-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: PingFang SC, Verdana, Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+  font-weight: 100;
+  color: #000;
+  line-height: 1.35;
+}
+
+/* 标题应该更贴紧内容，并与其他块区分，margin 值要相应做优化 */
+.typo h1, .typo h2, .typo h3, .typo h4, .typo h5, .typo h6,
+.typo-h1, .typo-h2, .typo-h3, .typo-h4, .typo-h5, .typo-h6 {
+  /*margin-top: 1.2em;*/
+  /*margin-bottom: 0.6em;*/
+  line-height: 1.35;
+}
+
+.typo h1, .typo-h1 {
+  font-size: 2em;
+  padding: 20px 0 0 20px;
+}
+
+.typo h2, .typo-h2 {
+  font-size: 1.8em;
+}
+
+.typo h3, .typo-h3 {
+  font-size: 1.6em;
+}
+
+.typo h4, .typo-h4 {
+  font-size: 1.4em;
+}
+
+.typo h5, .typo h6, .typo-h5, .typo-h6 {
+  font-size: 1.2em;
+}
+
+/* 在文章中，应该还原 ul 和 ol 的样式 */
+.typo ul, .typo-ul {
+  margin-left: 1.3em;
+  list-style: disc;
+}
+
+.typo ol, .typo-ol {
+  list-style: decimal;
+/*  margin-left: 1.9em;*/
+}
+
+.typo li ul, .typo li ol, .typo-ul ul, .typo-ul ol, .typo-ol ul, .typo-ol ol {
+  margin-bottom: 0.8em;
+  margin-left: 20px;
+}
+
+.typo li ul, .typo-ul ul, .typo-ol ul {
+  list-style: circle;
+}
+
+/* 同 ul/ol，在文章中应用 table 基本格式 */
+.typo table th, .typo table td, .typo-table th, .typo-table td, .typo table caption {
+  border: 1px solid #ddd;
+  padding: 0.5em 1em;
+  color: #666;
+}
+
+.typo table th, .typo-table th {
+  background: #fbfbfb;
+}
+
+.typo table thead th, .typo-table thead th {
+  background: #f1f1f1;
+}
+
+.typo table caption {
+  border-bottom: none;
+}
+
+/* 去除 webkit 中 input 和 textarea 的默认样式  */
+.typo-input, .typo-textarea {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.typo-em, .typo em, legend, caption {
+  color: #000;
+  font-weight: inherit;
+}
+
+/* 着重号，只能在少量（少于100个字符）且全是全角字符的情况下使用 */
+.typo-em {
+  position: relative;
+}
+
+.typo-em:after {
+  position: absolute;
+  top: 0.65em;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  content: "・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・";
+}
+
+/* Responsive images */
+.typo img {
+    max-width: 60%;
+    margin:5px auto;
+    text-align:center;
+    display:block;
+}
+
+
+/* themes css */
+
+code{ 
+	  color:#1abc9c;background: #f8f8f8;
+    padding: 1em 1.5em;
+    display: block; 
+}
+html{ 
+	  background:#eee; 
+}
+body{ 
+	  width:90%; 
+		max-width: 960px; 
+		background:#fff; 
+		margin:3em auto 0; 
+		padding-top:2em;
+		border:1px solid #ddd;
+		border-width:0 1px;
+}
+pre{
+	  white-space:pre-wrap;
+}
+i.serif{
+	  font-style:normal; 
+		text-transform:lowercase; 
+		color:#1abc9c; 
+}
+:-moz-any(h1, h2, h3, h4, h5, h5) i.serif{ 
+	  text-transform: capitalize; 
+}
+i.serif:hover{ 
+	  color:inherit; 
+}
+
+#wrapper{ 
+	  padding:5% 10%;
+}
+#tagline{ 
+	  color:#999; 
+		font-size:1em; 
+		margin:-2em 0 2em; 
+		padding-bottom:2em; 
+		border-bottom:3px double #eee; 
+}
+#fork{
+	  width:149px;
+		height:149px; 
+		position:fixed; 
+		top:0; 
+		right:0; 
+		_position:absolute; 
+}
+@media only screen and ( max-width: 640px ) {
+.menu-none{
+    display:none;
+     }
+.menu-visi {
+    display: block !important;
+}
+.typo h1, .typo-h1 {
+    font-size: 1.5em;
+    overflow: hidden;
+    word-wrap: break-word;
+
+}
+.typo h3, .typo-h3 {
+    font-size: 1.5em;
+}
+.more li {
+    width:100% !important;
+}
+}
+
+
+
+#table{ 
+	  margin-bottom:2em; 
+		color:#888; 
+}
+#menu{
+	  z-index:9999; 
+}
+#menu iframe{ 
+	  display:inline;
+		margin-right:1em; 
+}
+@media only screen and (max-width: 640px) {
+    table{ 
+		word-break:break-all;
+		word-wrap:break-word;
+		font-size:12px; 
+    }
+    .typo table th, .typo table td, .typo-table th, .typo-table td .typo table caption {
+    padding: 0.5em;
+    }
+    /*#fork{ display:none; }*/
+}
+
+/*首图*/
+p.indeximg {
+    height: 160px;
+    overflow: hidden;
+    background: #f8f1e2 url(https://life97.top/api/index.php) no-repeat;
+    background-size: cover;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+/*menu*/
+.dropbt{ 
+   padding: 10px;/*按钮内边框离*/ 
+   font-size: 15px;  /*按钮字体大小 */ 
+   background: #eee; /* 按钮背景色 */
+   border: none; /* 去掉按钮边框 */ 
+   color: #1abc9c; /* 按钮字的颜色 */ 
+   cursor: pointer; /* 鼠标在按钮上的小手标记 */ 
+   font-weight: bold;
+}
+.dropbox a {
+    color: #fff; /* 链接字的颜色改成黑色 */ 
+    padding: 0 10px; /* 链接内边距 */ 
+    text-decoration: none; /* 去掉可恶的下划线 */ 
+    display: block; /* 链接独立成行 */ 
+    margin: 15px 20px;
+}
+.dropbox{ 
+    display: none; /* 不显示 */
+    position: absolute; /* 盒子的位置为相对定位 */ 
+    /* background-color: #fff; 盒子的背景色 */ 
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2); /* 盒子的阴影，这里设置了右边4下边8 */ 
+    background: #038c5aab;
+    background-color: #038c5aab;
+    width: 90%;
+    max-width: 960px;
+    z-index: 999;
+}
+.drop:hover .dropbt{
+/*  background: #2f84d8; 鼠标在按钮上时，按钮背景色变 */ 
+} 
+.drop:hover .dropbox{ 
+    display: block; /* 鼠标在drop上时，dropbox菜单出现 */
+}
+.drop{
+    display: inline-block; /* 这是让盒子drop不占整行，去掉盒子天生占行的属性 */
+    background: #1abc9c;
+}
+.dropbox a:hover{
+ /* background: #cccdcf; /* 这里是鼠标移动菜单列表时改变背景色 */ 
+    text-decoration:underline;
+} 
+.menu-visi{
+    display: none;
+}
+
+ul.pagelinks li{
+		float: left;
+}
+
+
+#foot{
+		position: absolute;
+		text-align: center;
+		padding: 2% 10%;
+		left: 0;
+		right: 0;
+		margin: auto;
+}
+p span {
+		color: #1abc9c;
+		font-style: normal;
+		padding: 0 .2rem!important;
+}
+.permalink{
+		text-align: right;
+		border-bottom: 3px double #1abc9c;
+}
+.permalink:hover{
+    border-bottom: 3px double #1abc9c;
+}
+				
+	/*comments*/
+#comments {
+		padding-top:15px;
+		font-size:.925em;
+}
+.comment-list,.comment-list ol {
+		list-style:none;
+		margin:0;
+		padding:0;
+}
+.comment-list li {
+padding: 14px 0 0 0;
+    margin-top: 10px;
+    border-top: 3px double #1abc9c;
+}
+.comment-list li.comment-level-even {
+		background:#fff;
+}
+.comment-list li.comment-by-author {
+		background:#eee;
+}
+.comment-list li .comment-reply {
+		text-align:right;
+		font-size:.92857em;
+                                    display: inline-block;
+                                    float: right;
+}
+.comment-meta a {
+		color:#999;
+		font-size:.92857em;
+}
+.comment-author {
+		display:block;
+		margin-bottom:3px;
+		color:#444;
+}
+.comment-author .avatar {
+		float:left;
+		margin-right:10px;
+}
+.comment-author cite {
+		font-weight:700;
+		font-style:normal;
+			}
+.comment-list .respond {
+		margin-top:15px;
+		border-top:1px solid #eee;
+}
+.respond .cancel-comment-reply {
+		float:right;
+		margin-top:15px;
+		font-size:.92857em;
+}
+#comment-form label {
+		margin-bottom:.5em;
+		font-weight:700
+}
+#comment-form .required:after {
+		content:" *";
+		color:#1abc9c
+}
+input[type=email],input[type=text],input[type=url] {
+		background:0 0;
+		height:30px;
+		box-shadow:none
+}
+input[type=email],input[type=text],input[type=url],textarea {
+		padding:5px;
+		border:1px solid #1abc9c;
+		border-radius:2px;
+		box-sizing:border-box;
+}
+textarea {
+		outline:0;
+		border-radius:2px;
+		display:block;
+		background:#fff;
+		overflow:auto;
+		border:1px solid #1abc9c;
+		width:100%;
+}
+#comment-form button {
+		height:30px;
+		border-radius:2px;
+		padding:0 6px;
+		color:#fff;
+		background:#1abc9c;
+		border:0;
+		margin-top:0;
+}
+#comments form div {
+		float: left;
+}
+#comments form input {
+    margin: 0 15px 15px 0;
+}
+			
+.link{
+    text-align: center;
+    font-style: normal;
+    /*text-transform: lowercase;*/
+    color: #1abc9c;
+    margin:0 0 15px 0 !important;
+}
+			/*分类介绍*/
+.Des {
+	  width: 100%;
+		overflow: hidden;
+		margin-bottom: 1.5rem;
+		display: flex;
+		border-bottom: 1px solid #1abc9c;
+}
+.Destitle {
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		background-color: #1abc9c;
+		width: 3rem;
+		flex: none;
+}
+span.Des-title {
+		font-weight: 700;
+		color: rgb(255 255 255);
+		font-size: 10px;
+ /* writing-mode: vertical-rl; */
+		letter-spacing: 0.5em;
+		padding: 5px;
+}
+.Descontent {
+		padding: 0 0 0 10px;
+}
+p.des-content-p {
+		font-weight: 300;
+		font-size: 12px;
+		margin-bottom:0;
+}
+p.description:first-letter {
+		font-size: 200%;
+		color: #fff;
+}
+			/*分割线*/
+div#end {
+		text-align:center;
+		font-size:1.5em;
+		line-height:1em;
+		margin:.5em auto;
+		font-weight:100;
+		color:#c2c6cc;
+		font-family:Microsoft Yahei,sans-serif;
+}
+div#end span:hover{
+    color:#1abc9c;
+}
+div#end:before {
+		content:'——';
+		margin-right:20px;
+}
+div#end:after {
+		content:'——';
+		margin-left:10px;
+}
+/*pages*/
+ol.pages {
+	 margin:20px 0 10px;
+	 color:#666;
+	 list-style:none;
+	 font-size:1.5em;
+	 text-align:center;
+}
+ol.pages li {
+	 margin:0 5px 0 0;
+	 display:inline;
+}
+ol.pages li a {
+	  padding:3px 9px;
+	  border:1px solid #eee;
+	  text-decoration:none
+}
+ol.pages li.current a {
+	  background:#1abc9c;
+	  border-color:#1abc9c;
+	  color:#fff;
+}
+
+textarea::placeholder {
+    text-align: center;
+    line-height: 30px;
+    padding: 20px 0 0 0;
+}
+
+.back,div#DarkModeButton{
+    position: sticky;
+    float: right;
+    top: -110px;
+    margin: -50px -40px 0 0;
+    border-radius: 50%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E %3Cpath fill='%23ffffff' d='M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z'%3E%3C/path%3E %3C/svg%3E") center no-repeat #1abc9c;
+    background-size: 50%;
+    width: 50px;
+    height: 50px;
+    transform: translateY(calc(85vh + 0px));
+    z-index: 999;
+}
+
+ol.page-navigator {
+    margin-left: 0;
+}
+
+button.dropbt {
+    width: 25px;
+    height: 22px;
+    border-top: 4px solid #fff;
+    border-bottom: 4px solid #fff;
+    background-color: #fff;
+    padding: 5px 0;
+    background-clip: content-box;
+    margin: 12px 20px;
+}
+/*.typo img:hover {
+    transform: scale(2);
+}*/
+
+/*评论审核字体颜色*/
+span.text-muted {
+    color: red;
+}
+
+/*搜索框*/
+.search-bar input,
+	.search-btn, 
+	.search-btn:before, 
+	.search-btn:after {
+	  transition: all 0.25s ease-out;
+	}
+	.search-bar input,
+	.search-btn {
+	  width: 3em;
+	  height: 3em;
+          border: 0;
+	}
+	.search-bar input:invalid:not(:focus),
+	.search-btn {
+	  cursor: pointer;
+	}
+.search-bar input:focus,
+	.search-bar input:valid  {
+	  width: 100%;
+	}
+	.search-bar input:focus,
+	.search-bar input:not(:focus) + .search-btn:focus {
+	  outline: transparent;
+	}
+	.search-bar {
+	  display: flex;
+	  max-width: 30em;
+	}
+	.search-bar input {
+	  background: transparent;
+	  border-radius: 1.5em;
+	  box-shadow: 0 0 0 0.4em #1abc9c inset;
+	  padding: 0.75em;
+	  transform: translate(0.5em,0.5em) scale(0.5);
+	  transform-origin: 100% 0;
+	  -webkit-appearance: none;
+	  -moz-appearance: none;
+	  appearance: none;
+	}
+	.search-bar input::-webkit-search-decoration {
+	  -webkit-appearance: none;
+	}
+	.search-bar input:focus,
+	.search-bar input:valid {
+	  background: #fff;
+	  border-radius: 0.375em 0 0 0.375em;
+	  box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+	  transform: scale(1);
+	}
+	.search-btn {
+	  background: #1abc9c;
+	  border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+	  padding: 0.75em;
+	  position: relative;
+	  transform: translate(0.25em,0.25em) rotate(45deg) scale(0.25,0.125);
+	  transform-origin: 0 50%;
+	}
+	.search-btn:before, 
+	.search-btn:after {
+	  content: "";
+	  display: block;
+	  opacity: 0;
+	  position: absolute;
+	}
+	.search-btn:before {
+	  border-radius: 50%;
+	  box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+	  top: 0.75em;
+	  left: 0.75em;
+	  width: 1.2em;
+	  height: 1.2em;
+	}
+	.search-btn:after {
+	  background: #f1f1f1;
+	  border-radius: 0 0.25em 0.25em 0;
+	  top: 51%;
+	  left: 51%;
+	  width: 0.75em;
+	  height: 0.25em;
+	  transform: translate(0.2em,0) rotate(45deg);
+	  transform-origin: 0 50%;
+	}
+	.search-btn span {
+	  display: inline-block;
+	  overflow: hidden;
+	  width: 1px;
+	  height: 1px;
+	}
+	
+	/* Active state */
+	.search-bar input:focus + .search-btn,
+	.search-bar input:valid + .search-btn {
+	  background: #1abc9c;
+	  border-radius: 0 0.375em 0.375em 0;
+	  transform: scale(1);
+	}
+	.search-bar input:focus + .search-btn:before, 
+	.search-bar input:focus + .search-btn:after,
+	.search-bar input:valid + .search-btn:before, 
+	.search-bar input:valid + .search-btn:after {
+	  opacity: 1;
+	}
+	.search-bar input:focus + .search-btn:hover,
+	.search-bar input:valid + .search-btn:hover,
+	.search-bar input:valid:not(:focus) + .search-btn:focus {
+	  background: #1abc9c;
+	}
+	.search-bar input:focus + .search-btn:active,
+	.search-bar input:valid + .search-btn:active {
+	  transform: translateY(1px);
+	}
+	  .search-bar input {
+	    box-shadow: 0 0 0 0.4em #1abc9c inset;
+	  }
+	  .search-bar input:focus,
+	  .search-bar input:valid {
+	    background: #fff;
+	    box-shadow: 0 0 0 0.1em #1abc9c inset;
+	  }
+/*ul more*/
+.more li{    
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 49%;
+    display: inline-block;
+}
+ul .more{
+    margin: 1em 0 2em 0;
+    text-align: left;
+}
+.more li:before{
+    display: inline-block;
+    content: "";
+    background-color: #ddd;
+    height: 7px;
+    width: 7px;
+    border-radius: 100%;
+    margin-right: 10px;
+    margin-bottom: 2px;
+}
+.more li:hover:before{
+    background-color:#1abc9c;
+}
+/*memos*/
+ul.talks {
+    list-style: none;
+    margin-left: 0;
+}
+.memostext{
+    white-space: pre-line;
+    text-indent:2em;
+}
+.memosimg{
+    display: flex;
+    width: 100%;
+    text-align:left;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.memosimg img {
+    max-height: 10rem;
+    width: auto;
+    border-radius: 0.5rem;
+    margin: 0 0.5rem 0 0;
+    max-width: 100%;
+}
+
+a.swipebox {
+    color: #333;
+}
+
+
+/*进度条*/
+#nprogress .bar{
+
+  background: #1abc9c !important;    //这里可以随便写颜色
+
+}
+
+/*灯*/
+
+div#DarkModeButton {
+    top: -60px !important;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
+    background: #1abc9c !important;
+}
+
+/*memos*/
+.tag-span {
+    background-color: #1abc9c;
+    color: #fff;
+    border-radius: 10rem;
+}
+
+/*new*/
+#pjax-container {
+    padding: 20px 0 0 0;
+}
+ul.post {
+    list-style: none !important;
+    margin-left: 4.5em;
+}
+li.timeline {
+    position: relative;
+    padding: 0em 1em 1em 2em;
+    font-size: 1.4em;
+    color: #02cbab;
+    line-height: 1;
+    border-radius: 0.2em;
+    cursor: pointer;
+}
+li.timeline:before {
+    position: absolute;
+    /*top: 1.25em;*/
+    left: 0.5em;
+    content: '';
+    width: 0.3em;
+    height: 0.3em;
+    border: 0.1em solid #02cbab;
+    border-radius: 50%;
+}
+li.timeline-info {
+    position: relative;
+    margin: -1.5em auto 2em 3em;
+    padding: 0;
+    color: #323232;
+    word-wrap: break-word;
+    word-break: normal;
+    background-color: #eee;
+    border-radius: 0.2em 2em 2em 2em;
+    /*box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;*/
+}
+li.timeline-info:before {
+    position: absolute;
+    top: 1.5em;
+    left: -2em;
+    content: '';
+    width: 0.1em;
+    height: 100%;
+    background-color: #02cbab;
+}
+li.timeline-info p,li.timeline-info div {
+    margin: 0;
+    padding: 1em;
+    font-size: 1em;
+    line-height: 1.4;
+    font-weight: normal;
+}
+li.timeline-info div p{
+   padding:0 !important;
+   line-height: 2 !important;
+}
+.time {
+    padding: 0 2em 2em 2em !important;
+}
+.date {
+    padding: 0 !important;
+    position: absolute;
+    left: -120px;
+    top: -5px;
+}
+i.date {
+    left: -50px;
+}
+.pimg {
+    height: 160px;
+    border-radius: 1em;
+    float: right;
+    width: 216px;
+    object-fit: cover;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+@media only screen and (max-width: 640px) {
+.pimg {
+    max-width: 100% !important;
+    float: none;
+}
+ul.post {
+    margin: 2em 0 0 1em;
+    padding:1em 0 0 0;
+}
+li.timeline-info {
+   margin: -1.5em auto 2em 0em;
+}
+li.timeline-info:before{
+   top: 0.5em;
+   left: -1em;
+}
+li.timeline:before {
+    top: -1em;
+    left: -1em;
+}
+.date,i.date {
+    left: 0; 
+    top: -25px;
+}
+}
